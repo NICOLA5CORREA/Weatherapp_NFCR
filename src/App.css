@@ -1,1 +1,22 @@
+body .ligthMode{
+    background-color: #fff;
+}
 
+.darkMode {
+    color: red;
+}
+
+.ligthMode {
+    color: blue;
+}
+
+.darkMode{
+    background: url(../public/background.svg);
+    
+    width: 100vw; 
+    height: 100vh;
+}
+
+.ligthMode{
+    background: url(../public/background2.svg);
+}
