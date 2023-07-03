@@ -1,12 +1,14 @@
 
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import Loader from './Loader'
 
 const WeatherApi = () => {
 
     const [darkmode, setdarkmode ] = useState (false)
     const [units, setUnits ] = useState (false)
     const [info, setInfo ] = useState ({})
+    const [isLoading, setIsLoading] = useState (true);
     const apiKey ='06ddcee1cd2a99921b275d59fe515054';
     
     const options = {
@@ -33,13 +35,16 @@ const WeatherApi = () => {
             .get (`https://api.openweathermap.org/data/2.5/weather?lat=4.60971&lon=-74.08175&appid=${apiKey}&units=${tempUnit}`)
             .then (resp => {console.log (resp.data)
             setInfo (resp.data)
+            setTimeout (()=> {
+                setIsLoading (false)
+            }, 1000)
             })
             .catch( error => console.error(error))
     }, [units] )
 
     return (
         <div className={`${darkmode ? 'darkMode' : 'ligthMode'}`}>
-            <div class="loader"></div>
+            {isLoading && <Loader/>}
             <span><button className= "mode" onClick={()=>{setdarkmode(!darkmode)}}>Ligth/Dark</button></span>
             <div >
                 <h1 className="header">WEATHER RADAR</h1>
@@ -63,8 +68,8 @@ const WeatherApi = () => {
                 </span>
             </div>    
         </div>
-                        )
-                    }
+        )
+}
 
 
 export default WeatherApi
