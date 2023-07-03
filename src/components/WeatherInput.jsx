@@ -8,6 +8,7 @@ const WeatherApi = () => {
     const [units, setUnits ] = useState (false)
     const [info, setInfo ] = useState ({})
     const apiKey ='06ddcee1cd2a99921b275d59fe515054';
+    
     const options = {
         enableHighAccuracy: true,
         timeout: 12000,
@@ -31,13 +32,14 @@ const WeatherApi = () => {
         axios
             .get (`https://api.openweathermap.org/data/2.5/weather?lat=4.60971&lon=-74.08175&appid=${apiKey}&units=${tempUnit}`)
             .then (resp => {console.log (resp.data)
-                setInfo (resp.data)
+            setInfo (resp.data)
             })
             .catch( error => console.error(error))
     }, [units] )
 
     return (
         <div className={`${darkmode ? 'darkMode' : 'ligthMode'}`}>
+            <div class="loader"></div>
             <span><button className= "mode" onClick={()=>{setdarkmode(!darkmode)}}>Ligth/Dark</button></span>
             <div >
                 <h1 className="header">WEATHER RADAR</h1>
@@ -55,6 +57,7 @@ const WeatherApi = () => {
                             <div className="speed">Wind speed: {info.wind?.speed} Kts</div>
                         </div>
                         <div><button className="temp-scale" onClick= {()=>{setUnits(!units)}}>K - °C</button>
+                        
                         </div>
                     </div>            
                 </span>
