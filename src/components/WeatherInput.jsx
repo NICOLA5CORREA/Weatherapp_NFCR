@@ -4,31 +4,65 @@ import { useState, useEffect } from 'react'
 
 const WeatherApi = () => {
 
-    const [info, setInfo ] = useState ({})
     const [darkmode, setdarkmode ] = useState (false)
-    const apiKey ='a6ce2cc0b7a08924a5a16ca43ee042c3'
-    const tempUnit = "metric";
-    useEffect (()=> {
+    const [units, setUnits ] = useState (false)
+    const [info, setInfo ] = useState ({})
+    const apiKey ='06ddcee1cd2a99921b275d59fe515054';
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 12000,
+        maximumAge: 0,
+    };
 
+    function success(pos) {
+        const crd = pos.coords;
+        console.log("Your current position is:");
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude: ${crd.longitude}`);
+        console.log(`More or less ${crd.accuracy} meters.`);
+    }
+
+    function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+    useEffect (()=> {
+        let tempUnit = units ? 'units' : 'metric'
         axios
-            // .get (`https://api.openweathermap.org/data/2.5/weather?q=Berlin&appid=${apiKey}&units=${tempUnit}`)
-            .get (`https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid=06ddcee1cd2a99921b275d59fe515054`)
+            .get (`https://api.openweathermap.org/data/2.5/weather?lat=4.60971&lon=-74.08175&appid=${apiKey}&units=${tempUnit}`)
             .then (resp => {console.log (resp.data)
                 setInfo (resp.data)
             })
             .catch( error => console.error(error))
-    }, [] )
+    }, [units] )
 
     return (
-        <>
         <div className={`${darkmode ? 'darkMode' : 'ligthMode'}`}>
-        <h1 className="tittle">Current Location: {info.name}</h1>
-        <p>{info?.lat}hola nicho</p>
-        <button onClick={()=>{setdarkmode(!darkmode)}}>DarkMode</button>
+            <span><button className= "mode" onClick={()=>{setdarkmode(!darkmode)}}>Ligth/Dark</button></span>
+            <div >
+                <h1 className="header">WEATHER RADAR</h1>
+                <span className={`${units ? 'units' : 'metric'}`}>
+                    <div className= "card">
+                        <div className="container">
+                            {info?.weather ? (<img src={`../../public/${info?.weather[0].icon}.png`} alt="" />): null}
+                        </div>
+                        <h1 className="tittle">📍Current Location: {info.name}, {info.sys?.country}</h1>
+                        <div className="totalWrap">
+                            <div className="description">{info?.weather ? ( <span>{info?.weather[0].description}</span>) : null}</div>
+                            <div className="Temperatur">Temperature: {info.main?.temp} {units ? 'K' : '°C' } </div>
+                            <div className="realFeel">Feels like: {info.main?.feels_like} {units ? 'K' : '°C' }</div>
+                            <div className="Humidity">Humidity: {info.main?.humidity}%</div>
+                            <div className="speed">Wind speed: {info.wind?.speed} Kts</div>
+                        </div>
+                        <div><button className="temp-scale" onClick= {()=>{setUnits(!units)}}>K - °C</button>
+                        </div>
+                    </div>            
+                </span>
+            </div>    
         </div>
-        </>
-    )
-}
+                        )
+                    }
+
 
 export default WeatherApi
 

@@ -1,22 +1,237 @@
-body .ligthMode{
-    background-color: #fff;
+html {
+    display: flex;
+    scroll-behavior: smooth;
+    overflow-x: hidden ;
+    width: 100vw; 
+    height: 100vh;
+
 }
 
-.darkMode {
-    color: red;
+* {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.ligthMode {
-    color: blue;
+.header {
+  position:absolute;
+  left: 2%;
+  text-shadow: 2px 2px 0px #fad35d, 5px 4px 0px rgba(0,0,0,0.15);
+  color: #e5e797;
 }
+.card {
+    width: 350px;
+    height: 235px;
+    padding: 25px;
+    background: radial-gradient(178.94% 106.41% at 26.42% 106.41%, #FFF7B1 0%, rgba(255, 255, 255, 0) 71.88%), #ffffffb1;
+    box-shadow: 0px 155px 62px rgba(0, 0, 0, 0.01), 0px 87px 52px rgba(0, 0, 0, 0.05), 0px 39px 39px rgba(0, 0, 0, 0.09), 0px 10px 21px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 23px;
+    transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+    cursor: pointer;
+    position: absolute;
+    left: 35%;
+    top:25%;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.container {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    right: -35px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.6);
+}
+
+.tittle {
+  position: relative;
+  top:-18%;
+  text-align: center;
+}
+
+.description {
+  text-transform: uppercase;
+  padding: 7px;
+}
+
+.Temperatur {
+  text-transform: uppercase;
+  padding: 7px;
+}
+
+.realFeel {
+  text-transform: uppercase;
+  padding: 7px;
+}
+
+.Humidity {
+  text-transform: uppercase;
+  padding: 7px;
+}
+
+.speed {
+  text-transform: uppercase;
+  padding: 7px;
+}
+
+.totalWrap {
+  display:flex;
+  flex-direction: column;
+  font-size: 13px;
+  position: absolute;
+  top: 40%;
+}
+
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .card-header span:first-child {
+    word-break: break-all;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 135%;
+    color: rgba(87, 77, 51, 0.66);
+  }
+  
+  .card-header span:last-child {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 135%;
+    color: rgba(87, 77, 51, 0.33);
+  }
+
+
+
+  .temp {
+    position: absolute;
+    left: 25px;
+    bottom: 12px;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
+    color: rgba(87, 77, 51, 1);
+  }
+  
+  .temp-scale {
+    width: 80px;
+    height: 36px;
+    position: absolute;
+    right: 50px;
+    bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 9px;
+  }
+  
+  .temp-scale span {
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 134.49%;
+    color: rgba(87, 77, 51, 0.66);
+  }
+
+
+button.mode{
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    text-decoration: none;
+    border-color: aliceblue;
+    border-radius: 30px;
+    border: inset;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: transparent;
+    position: absolute;
+    top: 5%;
+    left: 80%;
+    
+}
+
+
+button.temp-scale{
+    background-color: transparent;
+    border-color: aliceblue;
+    border-radius: 20px 10px;
+    border: outset;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    color:rgb(13, 14, 13)
+}
+
 
 .darkMode{
-    background: url(../public/background.svg);
-    
+    color: rgb(6, 6, 6);
+    background: url(../public/backgroundnigth.svg);
     width: 100vw; 
     height: 100vh;
 }
 
-.ligthMode{
-    background: url(../public/background2.svg);
+
+.ligthMode {
+    color: rgb(0, 0, 0);
+    background: url(../public/backgrounday.svg);
+    width: 100vw; 
+    height: 100vh;
+}
+
+.darkMode .card{
+  background: radial-gradient(178.94% 106.41% at 26.42% 106.41%, #b9b1ff 0%, rgba(255, 255, 255, 0) 71.88%), #FFFFFF
+}
+
+@media (max-width: 768px) {
+  .header {
+    color: rgb(172, 181, 249);
+    position:absolute;
+    left: 10%;
+    top: 0%;
+    font-size: 22px;
+  }  
+  
+  .card {
+        left: 20%;
+        top:20%;
+        display: grid;
+        place-content: center;
+        font-size: 12px;
+    }
+    .ligthMode {
+        width: 100vmax; 
+        height: 100vmax;
+    }
+
+    .darkMode{
+        width: 100vmax; 
+        height: 100vmax;
+        
+    }
+    button.mode{
+        top: 5%;
+        left: 85%;
+    }
+
+    .tittle {
+      position: relative;
+      top:-20%;
+    }
+
+    .totalWrap {
+      position:relative;
+      text-align: justify;
+      font-size: 13px;
+      top: 5%;
+    }
+
+    .darkMode .card{
+      background: radial-gradient(178.94% 106.41% at 26.42% 106.41%, #b9b1ff 0%, rgba(255, 255, 255, 0) 71.88%), #FFFFFF
+    }
 }
