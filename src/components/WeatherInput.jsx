@@ -19,10 +19,16 @@ const WeatherApi = () => {
 
     function success(pos) {
         const crd = pos.coords;
-        console.log("Your current position is:");
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
+        let tempUnit = units ? 'units' : 'metric'
+        axios
+            .get (`https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&appid=${apiKey}&units=${tempUnit}`)
+            .then (resp => {console.log (resp.data)
+            setInfo (resp.data)
+            setTimeout (()=> {
+                setIsLoading (false)
+            }, 1000)
+            })
+            .catch( error => console.error(error));
     }
 
     function error(err) {
@@ -30,16 +36,9 @@ const WeatherApi = () => {
 }
 
     useEffect (()=> {
-        let tempUnit = units ? 'units' : 'metric'
-        axios
-            .get (`https://api.openweathermap.org/data/2.5/weather?lat=4.60971&lon=-74.08175&appid=${apiKey}&units=${tempUnit}`)
-            .then (resp => {console.log (resp.data)
-            setInfo (resp.data)
-            setTimeout (()=> {
-                setIsLoading (false)
-            }, 1000)
-            })
-            .catch( error => console.error(error))
+        navigator.geolocation.getCurrentPosition(success, error, options);
+        
+        
     }, [units] )
 
     return (
