@@ -51,7 +51,7 @@ const WeatherApi = () => {
                 <span className={`${units ? 'units' : 'metric'}`}>
                     <div className= "card">
                         <div className="container">
-                            {info?.weather ? (<img src={`../../public/${info?.weather[0].icon}.png`} alt="image" />): null}
+                            {info?.weather ? (<img src={`../../${info?.weather[0].icon}.png`} alt="image" />): null}
                         </div>
                         <h1 className="tittle">📍Current Location: {info.name}, {info.sys?.country}</h1>
                         <div className="totalWrap">
