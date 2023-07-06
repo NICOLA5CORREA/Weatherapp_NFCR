@@ -1,9 +1,7 @@
 html {
     display: flex;
     scroll-behavior: smooth;
-    overflow-x: hidden ;
-    width: 100vw; 
-    height: 100vh;
+    overflow: hidden ;
 
 }
 
@@ -231,30 +229,28 @@ button.temp-scale{
     color: rgb(172, 181, 249);
     position:absolute;
     left: 10%;
-    top: 0%;
-    font-size: 22px;
   }  
   
   .card {
-        left: 12%;
-        top:30%;
+        left: 20%;
+        top:50%;
         display: grid;
         place-content: center;
         font-size: 12px;
     }
     .ligthMode {
         width: 100vmax; 
-        height: 150vmax;
+        height: 147vmax;
     }
 
     .darkMode{
         width: 100vmax; 
-        height: 150vmax;
+        height: 147vmax;
         
     }
     button.mode{
-        top: 5%;
-        left: 85%;
+        top: 9%;
+        left: 110%;
     }
 
     .tittle {
